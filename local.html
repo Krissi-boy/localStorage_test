@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="local.css">
+    <title>DARK/LIGHT MODE</title>
+    <h1>localStorage with dark/light theme</h1>
+</head>
+<body>
+    
+    <script>
+       
+     
+// Henter HTML-elementer
+let listeEl = document.querySelector("ul");
+let inputEl = document.querySelector("input");
+let knappEl = document.querySelector("button");
+
+// Legger til lytter på knappen
+knappEl.addEventListener("click", leggTilBil);
+
+// Lager en array for å holde orden på filmene
+let bilmerke = [];
+
+// Viser liste over filmene
+lagListe();
+
+// Funksjon for å skrive ut filmer
+function lagListe() {
+  // Sjekker om det er lagret filmer tidligere
+  if (localStorage.bil_liste) {
+    // Det finnes lagrede filmer, vi henter dem
+    let tekst = localStorage.bil_liste
+
+    // Deler opp teksten i en array
+    biler = tekst.split(":");
+  }
+
+  // Tømmer listeelementet
+  listeEl.innerHTML = "";
+
+  for (let i = 0; i < bilmerke.length; i++) {
+    // Lager et <li>-element
+    let liEl = document.createElement("li");
+
+    // Legger til en film i <li>-elementet
+    liEl.innerHTML = bilmerke[i];
+
+    // Legger til <li>-elementet i lista
+    listeEl.appendChild(liEl);    
+  }
+}
+
+// Funksjon for å legge til film
+function leggTilBil() {
+  // Henter tittelen til ny film
+  let nyBil = inputEl.value;
+
+  // Legger til filmen i arrayen
+  biler.push(nybilmerke);
+
+  // Oppdaterer localStorage
+  let tekst = "";
+
+  for (let i = 0; i < bilmerke.length; i++) {
+    if (i == 0) {
+      tekst += bilmerke[i];
+    } else {
+      tekst += ":" + bilmerke[i];
+    }
+  }
+
+  localStorage.bilmerker = tekst;
+
+  // Viser listen på nytt
+  lagListe();
+}
+
+        
+        
+        
+        
+        
+    </script>
+
+</body>
+</html>
